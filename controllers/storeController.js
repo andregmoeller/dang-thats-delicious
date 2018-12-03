@@ -27,12 +27,10 @@ exports.editStore = async (req, res) => {
 };
 
 exports.updateStore = async (req, res) => {
-    console.log('DRINNEN');
     const store = await Store.findOneAndUpdate({ _id: req.params.id }, req.body, {
         new: true,
         runValidators: true,
     }).exec();
-    console.log('DARUNTER');
     req.flash('success', `Successfully updated <strong>${store.name}</strong> <a href="/stores/${store.slug}">View Store ➞</a>`);
     res.redirect(`/stores/${store.id}/edit`);
 };
